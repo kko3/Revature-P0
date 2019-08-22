@@ -6,8 +6,9 @@ namespace PizzaBox.Domain.Models
     {
         public List<Pizza> Pizzas { get; set; }
         public decimal Cost { get; set; }
-        public decimal CostLimit { get; set; }
-        public int PizzaLimit { get; set; }
+        public static decimal CostLimit { get; set; }
+        public static int PizzaLimit { get; set; }
+        
         
     }
 }
