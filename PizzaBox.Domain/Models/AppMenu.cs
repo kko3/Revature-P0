@@ -10,10 +10,14 @@ namespace PizzaBox.Domain.Models
       User u = new User();
       Location l1 = new Location("l1");
       Location l2 = new Location("l2");
+      Location l3 = new Location("l3");
+      Location l4 = new Location("l4");
       List<Location> listoflocations = new List<Location>();
 
       listoflocations.Add(l1);
       listoflocations.Add(l2);
+      listoflocations.Add(l3);
+      listoflocations.Add(l4);
 
       Menu(u,listoflocations);
     }

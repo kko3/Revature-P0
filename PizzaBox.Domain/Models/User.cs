@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using PizzaBox.Data.Entities;
 
 namespace PizzaBox.Domain.Models
 {
   public class User
   {
+    private P0PizzaBoxDBContext _db = new P0PizzaBoxDBContext();
     public List<Order> OrderHistory { get; set; }
     public string AccountName { get; set; }
     public string UserName { get; set; }
@@ -75,7 +77,14 @@ namespace PizzaBox.Domain.Models
       Location LocationChoice = new Location("n");
       int choice = -1;
       Console.WriteLine("What Location did you want to order from?");
-      choice = Convert.ToInt32(Console.ReadLine());
+      do{
+        for(int i = 0; i < lol.Count; i++){
+          Console.WriteLine($"{i+1}. {lol[i].LocationName}");
+        }
+        choice = Convert.ToInt32(Console.ReadLine())-1;
+      }while(choice < 0 || choice > lol.Count-1);
+
+      LocationChoice = lol[choice];
 
       return LocationChoice;
     }
@@ -85,11 +94,9 @@ namespace PizzaBox.Domain.Models
       
       Order o = new Order();    
 
-      //u.SelectedLocation = SelectFromLocations(lol);
+      u.SelectedLocation = SelectFromLocations(lol);
 
-      o.Pizzas = OrderPizza(o);
-
-      //Console.WriteLine(o.Cost);
+      //o.Pizzas = OrderPizza(o);
       
       //u.OrderHistory.Add(o);
     }
@@ -270,7 +277,7 @@ namespace PizzaBox.Domain.Models
 
         return toppinglist;
     }
-    
+
     public User()
     {
       AccountName = "None";
