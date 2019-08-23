@@ -8,7 +8,12 @@ namespace PizzaBox.Domain.Models
     public void AppStart()
     {
       User u = new User();
+      Location l1 = new Location("l1");
+      Location l2 = new Location("l2");
       List<Location> listoflocations = new List<Location>();
+
+      listoflocations.Add(l1);
+      listoflocations.Add(l2);
 
       Menu(u,listoflocations);
     }

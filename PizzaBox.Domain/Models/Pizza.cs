@@ -11,6 +11,12 @@ namespace PizzaBox.Domain.Models
 
     public decimal Cost { get; set; }
 
-    public int AmountOfToppings { get; set; }
+    public Pizza(Crust c,Size s,List<Topping> t,decimal co)
+    {
+      PizzaCrust = c;
+      PizzaSize = s;
+      PizzaToppings = t;
+      Cost = co;
+    }
   }
 }
