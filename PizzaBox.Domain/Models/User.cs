@@ -98,6 +98,7 @@ namespace PizzaBox.Domain.Models
 
       o.Pizzas = OrderPizza(o);
       o.Cost = o.CalculateCost();
+      o.ViewPizzas();
       //Console.WriteLine(o.Cost);
       
       u.OrderHistory.Add(o);
@@ -110,7 +111,7 @@ namespace PizzaBox.Domain.Models
       decimal toppingCost = -1m;
       Size s;
       Crust c;
-      Pizza p;
+      //Pizza p;
       List<Topping> toppinglist = new List<Topping>();
       List<Pizza> PizzaOrdered = new List<Pizza>();
       
@@ -128,8 +129,8 @@ namespace PizzaBox.Domain.Models
         }
         pizzaprice = s.Price + c.Price + toppingCost;        
 
-        p = new Pizza(c,s,toppinglist,pizzaprice);
-        PizzaOrdered.Add(p);
+        //p = ;
+        PizzaOrdered.Add(new Pizza(c,s,toppinglist,pizzaprice));
 
 
         Console.WriteLine("Are you done Ordering?");
@@ -155,7 +156,6 @@ namespace PizzaBox.Domain.Models
     public Size ChooseSize()
     {
         int ordersize = -1;
-        Size s;
 
         do
         {
@@ -168,24 +168,20 @@ namespace PizzaBox.Domain.Models
 
         if(ordersize == 1)
         {
-          s = new Size("Small",5.0m);
+          return new Size("Small",5.00m);
         }
         else if(ordersize == 2)
         {
-          s = new Size("Medium",7.50m);
+          return new Size("Medium",7.50m);
         }
         else
         {
-          s= new Size("Large",10.0m);
+          return new Size("Large",10.00m);
         }
-
-        
-        return s;
     }
 
     public Crust ChooseCrust()
     {
-        Crust c;
         int cruststyle = -1;
 
         do
@@ -199,18 +195,16 @@ namespace PizzaBox.Domain.Models
 
         if(cruststyle == 1)
         {
-          c = new Crust("Thin",2.5m);
+          return new Crust("Thin",2.50m);
         }
         else if(cruststyle == 2)
         {
-          c = new Crust("Regular",5.0m);
+          return new Crust("Regular",5.00m);
         }
         else
         {
-          c= new Crust("Garlic Butter",7.5m);
+          return new Crust("Garlic Butter",7.50m);
         }
-
-        return c;
     }
 
     public List<Topping> ChooseToppings()
@@ -220,6 +214,7 @@ namespace PizzaBox.Domain.Models
       int toppingchoice = -1;
       int toppingcount = 0;
 
+        toppinglist.Clear();
         do
         {
           bool toppingincluded = false;
@@ -237,23 +232,23 @@ namespace PizzaBox.Domain.Models
             Topping t;
             if(toppingchoice == 1)
             {
-              t = new Topping("Cheese",.5m);
+              t = new Topping("Cheese",.50m);
             }
             else if(toppingchoice == 2)
             {
-              t = new Topping("Sauce",.5m);
+              t = new Topping("Sauce",.50m);
             }
             else if(toppingchoice == 3)
             {
-              t = new Topping("Pepperoni",.5m);
+              t = new Topping("Pepperoni",.50m);
             }
             else if(toppingchoice == 4)
             {
-              t = new Topping("Mushrooms",.5m);
+              t = new Topping("Mushrooms",.50m);
             }
             else
             {
-              t = new Topping("Onions",.5m);
+              t = new Topping("Onions",.50m);
             }
             foreach (var top in toppinglist)
             {

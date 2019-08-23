@@ -28,11 +28,20 @@ namespace PizzaBox.Domain.Models
           return -1;
         }
 
-        public void ViewPizza()
+        public void ViewPizzas()
         {
           foreach (var p in Pizzas)
           {
-              Console.WriteLine(p);
+
+              //Console.WriteLine(p);
+              Console.WriteLine($"Size    : {p.PizzaSize.Name}");
+              Console.WriteLine($"Crust   : {p.PizzaCrust.Name}");
+              foreach (var t in p.PizzaToppings)
+              {
+                  Console.WriteLine($"Toppings: {t.Name}");
+              }
+              Console.WriteLine($"Cost    : ${p.Cost}");
+              Console.WriteLine();
           }
         }        
         
@@ -41,6 +50,7 @@ namespace PizzaBox.Domain.Models
         IsOrderComplete = false;
         PizzaLimit = 100;
         CostLimit = 5000;
+        Pizzas = new List<Pizza>();
       }
     }
 }
