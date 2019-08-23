@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace PizzaBox.Domain.Models
 {
@@ -7,11 +8,11 @@ namespace PizzaBox.Domain.Models
     public void AppStart()
     {
       User u = new User();
-      Location l = new Location();
+      List<Location> listoflocations = new List<Location>();
 
-      Menu(u);
+      Menu(u,listoflocations);
     }
-    public void Menu(User u)
+    public void Menu(User u,List<Location> lol)
     {
       string accountsignedin;
       int choice = -1;
@@ -42,12 +43,12 @@ namespace PizzaBox.Domain.Models
           }
           else
           {
-            u.ViewAccountDetails();
+            Console.WriteLine("Already logged in");
           }
         }
         else if(choice == 2)
         {
-          u.CreateLogin();
+          u = u.CreateLogin();
         }
         else if(choice == 3)
         {
@@ -56,7 +57,7 @@ namespace PizzaBox.Domain.Models
           }
           else
           {
-            u.PlaceOrder();
+            u.PlaceOrder(lol,u);
           }
         }
         else{

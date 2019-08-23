@@ -37,7 +37,7 @@ namespace PizzaBox.Domain.Models
       }
 
       u.AccountName = "Test";
-      Console.WriteLine("Good");
+
       return u;
     }
     public User UserLogOut(){
@@ -46,13 +46,48 @@ namespace PizzaBox.Domain.Models
       return u;
     }
 
-    public void ViewAccountDetails()
+    public User CreateLogin()
     {
-      Console.WriteLine("In Account Details");
+      User u = new User();
+      string typedusername = "";
+      string typedpassword1 = "";
+      string typedpassword2 = "";
+
+      Console.WriteLine("What is your username?");
+      typedusername = Console.ReadLine();
+      do
+      {
+        Console.WriteLine("Password?");
+        typedpassword1 = Console.ReadLine();
+        Console.WriteLine("Reenter your Password.");
+        typedpassword2 = Console.ReadLine();
+      }while(typedpassword1 != typedpassword2);
+
+      u.UserName = typedusername;
+      u.AccountName = typedusername;
+      u.Password = typedpassword1;
+
+
+      return u;
     }
-    public void CreateLogin(){}
-    public void SelectFromLocations(){}
-    public void PlaceOrder(){}
+    public Location SelectFromLocations(List<Location> lol)
+    {
+      Location LocationChoice = new Location();
+      int choice = -1;
+      Console.WriteLine("What Location did you want to order from?");
+      choice = Convert.ToInt32(Console.ReadLine());
+
+      return LocationChoice;
+    }
+
+    public void PlaceOrder(List<Location> lol,User u)
+    {
+      Order o = new Order();
+
+      u.SelectedLocation = SelectFromLocations(lol);
+
+      OrderHistory.Add(o);
+    }
 
     public User()
     {
