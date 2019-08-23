@@ -92,19 +92,22 @@ namespace PizzaBox.Domain.Models
     public void PlaceOrder(List<Location> lol,User u)
     {
       
-      Order o = new Order();    
+      Order o = new Order();   
 
-      u.SelectedLocation = SelectFromLocations(lol);
+      //u.SelectedLocation = SelectFromLocations(lol);
 
-      //o.Pizzas = OrderPizza(o);
+      o.Pizzas = OrderPizza(o);
+      o.Cost = o.CalculateCost();
+      //Console.WriteLine(o.Cost);
       
-      //u.OrderHistory.Add(o);
+      u.OrderHistory.Add(o);
     }
     public List<Pizza> OrderPizza(Order o)
     {
       int choice = -1;
       bool orderdone = false;
       decimal pizzaprice = -1m;
+      decimal toppingCost = -1m;
       Size s;
       Crust c;
       Pizza p;
@@ -118,7 +121,12 @@ namespace PizzaBox.Domain.Models
         s = ChooseSize();
         c = ChooseCrust();
         toppinglist = ChooseToppings();
-        pizzaprice = s.Price + c.Price + (toppinglist.Count * toppinglist[0].Price);        
+        toppingCost = 0m;
+        foreach(var t in toppinglist)
+        {
+          toppingCost += t.Price;
+        }
+        pizzaprice = s.Price + c.Price + toppingCost;        
 
         p = new Pizza(c,s,toppinglist,pizzaprice);
         PizzaOrdered.Add(p);
@@ -283,6 +291,7 @@ namespace PizzaBox.Domain.Models
       AccountName = "None";
       UserName = "username";
       Password = "password";
+      OrderHistory = new List<Order>();
     }
   }
 }
