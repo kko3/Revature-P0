@@ -88,8 +88,10 @@ namespace PizzaBox.Domain.Models
       //u.SelectedLocation = SelectFromLocations(lol);
 
       o.Pizzas = OrderPizza(o);
+
+      //Console.WriteLine(o.Cost);
       
-      u.OrderHistory.Add(o);
+      //u.OrderHistory.Add(o);
     }
     public List<Pizza> OrderPizza(Order o)
     {
